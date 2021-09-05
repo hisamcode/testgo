@@ -53,7 +53,9 @@ func (*server) PrimeNumberDecomposition(req *calculatorpb.PrimeNumberDecompositi
 
 func main() {
 
-	httpPort := "8000"
+	//The service at the port 8000 is the UI only. If you wanna use gRPC you have to call it in the port 9080. Never 8080, 8000, 6080, and so on.
+	//https://stackoverflow.com/questions/63372312/rpc-error-code-unavailable-desc-connection-closed-in-go-code
+	httpPort := "9080"
 
 	lis, err := net.Listen("tcp", ":"+httpPort)
 	if err != nil {

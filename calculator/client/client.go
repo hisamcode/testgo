@@ -10,11 +10,10 @@ import (
 	"google.golang.org/grpc"
 )
 
-
 func main() {
-	fmt.Println("hello i'am a client");
+	fmt.Println("hello i'am a client")
 
-	cc, err := grpc.Dial("localhost:50051", grpc.WithInsecure());
+	cc, err := grpc.Dial("zc0fd775d-zdddac676-gtw.qovery.io:443", grpc.WithInsecure())
 
 	if err != nil {
 		log.Fatalf("Could not connect: %v", err)
@@ -26,10 +25,10 @@ func main() {
 
 	doUnary(c)
 	doServerStreaming(c)
-	
+
 }
 
-func doUnary(c calculatorpb.CalculatorServiceClient)  {
+func doUnary(c calculatorpb.CalculatorServiceClient) {
 	fmt.Println("Starting to do a unary RPC....")
 	req := &calculatorpb.CalculatorRequest{
 		Calculator: &calculatorpb.Calculator{
@@ -37,7 +36,7 @@ func doUnary(c calculatorpb.CalculatorServiceClient)  {
 			Number_2: 10,
 		},
 	}
-	
+
 	res, err := c.Sum(context.Background(), req)
 	if err != nil {
 		log.Fatalf("Error while calling Calculator RPC: %v", err)
@@ -46,7 +45,7 @@ func doUnary(c calculatorpb.CalculatorServiceClient)  {
 	log.Printf("Response from sum: %v", res.Result)
 }
 
-func doServerStreaming(c calculatorpb.CalculatorServiceClient)  {
+func doServerStreaming(c calculatorpb.CalculatorServiceClient) {
 	fmt.Println("Starting to do a doPrimeNumberDecomposition server streaming RPC....")
 	req := &calculatorpb.PrimeNumberDecompositionRequest{
 		Number: 6000000,
