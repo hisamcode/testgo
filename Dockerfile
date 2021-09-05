@@ -16,4 +16,4 @@ RUN cd calculator/server/ && go build
 
 EXPOSE 8000
 
-CMD [ "/calculator/server/server" ]
+CMD [ "/app/calculator/server/server" ]
