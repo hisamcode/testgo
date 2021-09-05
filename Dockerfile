@@ -10,10 +10,10 @@ COPY go.sum ./
 RUN echo "Installing or doing stuff"
 RUN go mod download
 
-COPY calculator ./
+COPY calculator ./calculator
 
 RUN cd calculator/server/ && go build
 
 EXPOSE 8080
 
-CMD [ "/server" ]
+CMD [ "/calculator/server/server" ]
