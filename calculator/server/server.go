@@ -12,7 +12,6 @@ import (
 	"google.golang.org/grpc"
 )
 
-
 type server struct {
 	calculatorpb.UnimplementedCalculatorServiceServer
 }
@@ -22,7 +21,7 @@ func (*server) Sum(ctx context.Context, req *calculatorpb.CalculatorRequest) (*c
 	number1 := req.Calculator.GetNumber_1()
 	number2 := req.Calculator.GetNumber_2()
 	sum := number1 + number2
-	
+
 	result := "sum of " + strconv.Itoa(int(number1)) + " + " + strconv.Itoa(int(number2)) + " is " + strconv.Itoa(int(sum))
 	res := &calculatorpb.CalculatorResponse{
 		Result: result,
@@ -54,7 +53,13 @@ func (*server) PrimeNumberDecomposition(req *calculatorpb.PrimeNumberDecompositi
 
 func main() {
 
-	lis, err := net.Listen("tcp", "0.0.0.0:50051")
+	httpPort := os.Getenv("HTTP_PORT")
+
+	if httpPort == "" {
+		httpPort = "50051"
+	}
+
+	lis, err := net.Listen("tcp", ":"+httpPort)
 	if err != nil {
 		log.Fatalf("Failed to listen %v\n", err)
 	}
@@ -66,5 +71,5 @@ func main() {
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("Failed to serve %v\n", err)
 	}
-	
+
 }
