@@ -12,7 +12,7 @@ RUN go mod download
 
 COPY calculator ./
 
-RUN cd calculator/server/ go build
+RUN cd calculator/server/ && go build
 
 EXPOSE 8080
 
