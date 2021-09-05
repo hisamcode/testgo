@@ -54,11 +54,7 @@ func (*server) PrimeNumberDecomposition(req *calculatorpb.PrimeNumberDecompositi
 
 func main() {
 
-	httpPort := os.Getenv("HTTP_PORT")
-
-	if httpPort == "" {
-		httpPort = "50051"
-	}
+	httpPort := "50051"
 
 	lis, err := net.Listen("tcp", ":"+httpPort)
 	if err != nil {
@@ -68,6 +64,8 @@ func main() {
 	s := grpc.NewServer()
 
 	calculatorpb.RegisterCalculatorServiceServer(s, &server{})
+
+	fmt.Println("test")
 
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("Failed to serve %v\n", err)
