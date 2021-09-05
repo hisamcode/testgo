@@ -14,6 +14,6 @@ COPY calculator ./calculator
 
 RUN cd calculator/server/ && go build
 
-EXPOSE 50051
+EXPOSE 8000
 
 CMD [ "/calculator/server/server" ]

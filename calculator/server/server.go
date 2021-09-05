@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net"
-	"os"
 	"strconv"
 	"time"
 
@@ -54,7 +53,7 @@ func (*server) PrimeNumberDecomposition(req *calculatorpb.PrimeNumberDecompositi
 
 func main() {
 
-	httpPort := "50051"
+	httpPort := "8000"
 
 	lis, err := net.Listen("tcp", ":"+httpPort)
 	if err != nil {
