@@ -66,7 +66,7 @@ func main() {
 
 	calculatorpb.RegisterCalculatorServiceServer(s, &server{})
 
-	fmt.Println("test")
+	fmt.Println("test dari app")
 
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("Failed to serve %v\n", err)
